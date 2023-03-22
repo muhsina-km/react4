@@ -1,7 +1,6 @@
 import { Typography, AppBar, Toolbar, Button } from '@mui/material'
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 
 
@@ -18,13 +17,13 @@ const Navbar = () => {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} align="left">
-          <Link to='/' style={{color:'white', textDecoration:'none'}}>React 🧿</Link>
+          <Link to='/' style={{color:'white', textDecoration:'none'}}>React </Link>
           </Typography>
           <Button color="inherit" variant="outlined"><Link to='/students' style={{color:'white', textDecoration:'none'}}>Students</Link></Button>
           <Button color="inherit" variant="outlined"><Link to='/teachers' style={{color:'white', textDecoration:'none'}}>Teachers</Link></Button>
+          <Button color="inherit" variant="outlined"><Link to='/addstudents' style={{color:'white', textDecoration:'none'}}>ADD</Link></Button>
         </Toolbar>
       </AppBar>
     </Box>

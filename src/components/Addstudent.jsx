@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 
 
-const Addstudents = () => {
+const Addstudent = () => {
     var [students,setstudents]= useState({
         id:"",
         name:"",
@@ -39,4 +39,4 @@ const Addstudents = () => {
 }
 
 
-export default Addstudents
+export default Addstudent
