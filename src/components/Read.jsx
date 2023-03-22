@@ -1,8 +1,8 @@
-import { Typography, Paper, styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, } from '@mui/material'
+import { Typography, Paper, styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { tableCellClasses } from '@mui/material/TableCell';
 import { blue, blueGrey } from '@mui/material/colors';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 
 
 const Read = () => {
@@ -18,6 +18,16 @@ const Read = () => {
         },
     }));
     var [students, setstud] = useState([])
+
+    const delstu=() => {
+        console.log("Deleted"+id)
+        axios.delete(""+id)
+        .then(response => {
+            alert("deleted")
+            window.location.reload(false)
+        })
+    }
+    
     useEffect(() => {
         axios.get("http://localhost:3005/students")
             .then(response => {
@@ -45,6 +55,9 @@ const Read = () => {
                                 <TableCell>{value.id}</TableCell>
                                 <TableCell>{value.name}</TableCell>
                                 <TableCell>{value.grade}</TableCell>
+                                <TableCell>
+                                    <Button varient='contained' onClick={()=> delstu(value.id)}> Delete </Button>
+                                </TableCell>
                             </TableRow>
                         })}
                     </TableBody>
