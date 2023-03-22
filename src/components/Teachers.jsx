@@ -33,7 +33,7 @@ const Teachers = () => {
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
-                        <TableRow>
+                        <TableRow component={Paper}>
                             <StyledTableCell>Name</StyledTableCell>
                             <StyledTableCell>Age</StyledTableCell>
                             <StyledTableCell>Class</StyledTableCell>
