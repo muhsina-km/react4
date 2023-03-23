@@ -40,6 +40,8 @@ const Addstudent = (props) => {
 
   return (
     <div>
+      <br></br>
+      <br></br>
       <Typography variant='h3'>Add Students</Typography>
       <br></br>
 

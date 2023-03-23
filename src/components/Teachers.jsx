@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 const Teachers = () => {
-    const color = '#330e62';
+    const color = '#000000';
     const color2 = '#00b0ff';
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -30,13 +30,14 @@ const Teachers = () => {
         <div>
             <br></br>
             <Typography variant='h3'>Teachers</Typography>
+            <br></br>
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <Table>
                     <TableHead>
                         <TableRow component={Paper}>
-                            <StyledTableCell>NAME</StyledTableCell>
-                            <StyledTableCell>AGE</StyledTableCell>
-                            <StyledTableCell>CLASS</StyledTableCell>
+                            <StyledTableCell><b>NAME</b></StyledTableCell>
+                            <StyledTableCell><b>AGE</b></StyledTableCell>
+                            <StyledTableCell><b>CLASS</b></StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

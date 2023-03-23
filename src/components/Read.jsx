@@ -7,7 +7,7 @@ import Addstudent from './Addstudent';
 
 
 const Read = () => {
-    const color = '#330e62';
+    const color = '#000000';
     const color2 = '#00b0ff';
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -43,17 +43,18 @@ const Read = () => {
                 setstud(students = response.data)
             })
             .catch(err => console.log(err))
-    })
+    },[])
 
-    var finaljsx = <TableContainer component={Paper}>
-    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    var finaljsx = 
+    <TableContainer component={Paper}>
+    <Table>
         <TableHead>
             <TableRow component={Paper}>
-                <StyledTableCell>NAME</StyledTableCell>
-                <StyledTableCell>AGE</StyledTableCell>
-                <StyledTableCell>PLACE</StyledTableCell>
-                <StyledTableCell>DELETE</StyledTableCell>
-                <StyledTableCell>UPDATE</StyledTableCell>
+                <StyledTableCell><b>NAME</b></StyledTableCell>
+                <StyledTableCell><b>AGE</b></StyledTableCell>
+                <StyledTableCell><b>PLACE</b></StyledTableCell>
+                <StyledTableCell><b>DELETE</b></StyledTableCell>
+                <StyledTableCell><b>UPDATE</b></StyledTableCell>
             </TableRow>
         </TableHead>
         <TableBody>
