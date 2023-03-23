@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { tableCellClasses } from '@mui/material/TableCell';
 import { blue, blueGrey } from '@mui/material/colors';
 import axios, { Axios } from 'axios';
+import Addstudent from './Addstudent';
 
 
 const Read = () => {
-    const color = blue[400];
-    const color2 = blueGrey[900];
+    const color = '#330e62';
+    const color2 = '#00b0ff';
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: color2,
@@ -17,11 +18,18 @@ const Read = () => {
             fontSize: 14,
         },
     }));
+    var [update,setupdate] = useState(false)
+    var [singleValue,setsingleValue] = useState([])
     var [students, setstud] = useState([])
 
-    const delstu=() => {
+    const updstu=(value) => {
+        setsingleValue(value);
+        setupdate(true);
+    }
+
+    const delstu=(id) => {
         console.log("Deleted"+id)
-        axios.delete(""+id)
+        axios.delete("http://localhost:3005/students/"+id)
         .then(response => {
             alert("deleted")
             window.location.reload(false)
@@ -36,33 +44,45 @@ const Read = () => {
             })
             .catch(err => console.log(err))
     })
+
+    var finaljsx = <TableContainer component={Paper}>
+    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+            <TableRow component={Paper}>
+                <StyledTableCell>NAME</StyledTableCell>
+                <StyledTableCell>AGE</StyledTableCell>
+                <StyledTableCell>PLACE</StyledTableCell>
+                <StyledTableCell>DELETE</StyledTableCell>
+                <StyledTableCell>UPDATE</StyledTableCell>
+            </TableRow>
+        </TableHead>
+        <TableBody>
+            {students.map((value, index) => {
+                return <TableRow>
+                    <TableCell>{value.id}</TableCell>
+                    <TableCell>{value.name}</TableCell>
+                    <TableCell>{value.grade}</TableCell>
+                    <TableCell>
+                        <Button varient='contained' onClick={()=> delstu(value.id)}>Delete</Button> 
+                    </TableCell>
+                    <TableCell>
+                        <Button varient='contained'  onClick={()=> updstu(value)}>Update</Button>
+                    </TableCell>
+
+                        
+                   
+                </TableRow>
+            })}
+        </TableBody>
+    </Table>
+</TableContainer>
+
+       if (update)
+       finaljsx = <Addstudent data={singleValue} method="put"> </Addstudent>
     return (
         <div>
-            <br></br>
-            <Typography variant='h3'>Students</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow component={Paper}>
-                            <StyledTableCell>Name</StyledTableCell>
-                            <StyledTableCell>Age</StyledTableCell>
-                            <StyledTableCell>Place</StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {students.map((value, index) => {
-                            return <TableRow>
-                                <TableCell>{value.id}</TableCell>
-                                <TableCell>{value.name}</TableCell>
-                                <TableCell>{value.grade}</TableCell>
-                                <TableCell>
-                                    <Button varient='contained' onClick={()=> delstu(value.id)}> Delete </Button>
-                                </TableCell>
-                            </TableRow>
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+           <br></br>
+            {finaljsx}
         </div>
     )
 }

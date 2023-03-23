@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Read></Read>}> </Route>
         <Route path='/students' element={<Read></Read>}></Route>
-        <Route path='/addstudents' element={<Addstudent></Addstudent>}></Route>
+        <Route path='/addstudents' element={<Addstudent data={{id:'',name:'',grade:''}} method='post'></Addstudent>}></Route>
         <Route path='/teachers' element={<Teachers></Teachers>}></Route>
       </Routes>
       </BrowserRouter>

@@ -4,12 +4,8 @@ import React, { useState } from 'react'
 
 
 
-const Addstudent = () => {
-    var [students,setstudents]= useState({
-        id:"",
-        name:"",
-        grade:''
-    })
+const Addstudent = (props) => {
+    var [students,setstudents]= useState(props.data)
 
     const handler = (e) => {
         const{name,value} = e.target
@@ -17,7 +13,9 @@ const Addstudent = () => {
         console.log(students)
     }
      const inputhandler=(e) => {
-        console.log("button clicked")
+        console.log("clicked")
+
+        if (props.method === "post") {
         axios.post("http://localhost:3005/students",students)
         .then(response => {
             alert("Succesfully added")
@@ -25,14 +23,32 @@ const Addstudent = () => {
         .catch(error => {
             alert("Failed")
         })
+      }
+
+        else if(props.method === "put") {
+        axios.put("http://localhost:3005/students/"+students.id,students)
+        .then((response) => {
+          console.log("put data"+response.data)
+          alert("success")
+          window.location.reload(false);
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }
      }
 
   return (
     <div>
-      <Typography variant='h3'>Add Students</Typography><br></br>
-      <TextField name='id' variant='outlined' label="ID" onChange={handler}> id </TextField><br></br><br></br>
-      <TextField name='name' variant='outlined' label="Name"  onChange={handler}> name </TextField><br></br><br></br>
-      <TextField name='grade' variant='outlined' label="Grade"  onChange={handler}> grade </TextField><br></br><br></br>
+      <Typography variant='h3'>Add Students</Typography>
+      <br></br>
+
+      <TextField name='id' variant='outlined' label="ID" onChange={handler}> id </TextField>
+      <br></br><br></br>
+      <TextField name='name' variant='outlined' label="Name"  onChange={handler}> name </TextField>
+      <br></br><br></br>
+      <TextField name='grade' variant='outlined' label="Grade"  onChange={handler}> grade </TextField>
+      <br></br><br></br>
       <Button variant='contained' onClick={inputhandler}>SUBMIT</Button>
     </div>
   )
